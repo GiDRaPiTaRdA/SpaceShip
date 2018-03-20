@@ -14,26 +14,17 @@ namespace Assets.Scripts.Behaviours
 
         private static Random random;
 
-        private Random Random
-        {
-            get
-            {
-                if (random == null)
-                    random = new Random();
-
-                return random;
-            }
-        }
+        private Random Random => random ?? (random = new Random());
 
         // Use this for initialization
         void Start()
         {
-            GetComponent<Rigidbody2D>().angularVelocity = Random.Next(5, 20) * (Random.Next(-1, 1) == 0 ? -1 : 1);
+            this.GetComponent<Rigidbody2D>().angularVelocity = this.Random.Next(5, 20) * (this.Random.Next(-1, 1) == 0 ? -1 : 1);
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-			if(destoyOnPickUp&&collision.gameObject.tag==GameTags.Lander)
+			if(this.destoyOnPickUp&&collision.gameObject.tag==GameTags.Lander)
                 Destroy(this.gameObject);
         }
     }

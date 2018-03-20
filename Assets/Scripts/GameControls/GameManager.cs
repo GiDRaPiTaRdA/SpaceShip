@@ -8,25 +8,18 @@ using ToolKit;
 using Assets.Scripts.Entities.Modifications.Mods;
 
 public class GameManager : MonoBehaviour {
-
-    public static SpaceShip SpaceShip { get; set; }
-
-	// Use this for initialization
-	void Awake() {
-        SpaceShip = new SpaceShip();
-    }
 	
 	// Update is called once per frame
 	void Update () {
       
     }
 
-    public static event EventHandler OnInitialize;
+    //public static event EventHandler OnInitialize;
 
-    public static void Initialize()
-    {
-        OnInitialize.SafeInvoke(null, EventArgs.Empty);
-    }
+    //public static void Initialize()
+    //{
+    //    OnInitialize.SafeInvoke(null, EventArgs.Empty);
+    //}
 
     public void ResetLevel(){
         Time.timeScale = 1;

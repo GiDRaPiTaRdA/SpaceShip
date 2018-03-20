@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
 namespace Assets.Scripts.Behaviours
 {
-    public class StarsMonitoring : MonoBehaviour
+    public class StarsMonitoring : ShipMonoBehaviour
     {
 
         public int countStars = 0;
@@ -12,17 +13,19 @@ namespace Assets.Scripts.Behaviours
         SpriteRenderer render;
 
         // Use this for initialization
-        void Start()
+        protected override void Start ()
         {
-            render = GetComponent<SpriteRenderer>();
+            base.Start();
+
+            this.render = this.GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (GameManager.SpaceShip.Stars >= countStars)
+            if (this.SpaceShip.Stars >= this.countStars)
             {
-                render.maskInteraction = SpriteMaskInteraction.None;
+                this.render.maskInteraction = SpriteMaskInteraction.None;
             }
         }
     }

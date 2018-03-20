@@ -12,13 +12,16 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -335,7 +338,9 @@
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\FuelConsumption.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\MovementBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\RetardOnFireBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\ShipMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipModsBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipDestructionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\GunBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\LandingGearBehaviour.cs" />
@@ -355,7 +360,6 @@
     <Compile Include="Assets\Scripts\GameControls\KeyBindings\ApplicationKeyBindings.cs" />
     <Compile Include="Assets\Scripts\GameControls\KeyBindings\KeyBinding.cs" />
     <Compile Include="Assets\ToolKit\DamageCalc.cs" />
-    <Compile Include="Assets\ToolKit\SafeDelegate.cs" />
     <Compile Include="Assets\ToolKit\Spawn.cs" />
     <Compile Include="Assets\ToolKit\TreeTraversal.cs" />
     <Compile Include="Assets\ToolKit\VectorsManager.cs" />

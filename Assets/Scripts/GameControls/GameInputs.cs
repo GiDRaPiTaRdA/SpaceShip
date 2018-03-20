@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Entities;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -10,10 +11,6 @@ namespace Assets.Scripts.GameControls
 {
     public class GameInputs : MonoBehaviour
     {
-        // Use this for initialization
-        void Start()
-        {
-        }
 
         // Update is called once per frame
         void Update()
@@ -37,21 +34,27 @@ namespace Assets.Scripts.GameControls
 
 #else
 
-                // FIRE
-                if (CrossPlatformInputManager.GetButtonDown("Fire"))
-                    GameManager.SpaceShip.Fire();
+                SpaceShip ship = GameObject.FindGameObjectWithTag(GameTags.Lander)?.GetComponent<SpaceShipBehaviour>()?.SpaceShip;
 
-                // TRUST
-                GameManager.SpaceShip.Trust(CrossPlatformInputManager.GetButton("Trust"));
+                if (ship != null)
+                {
 
-                // RETARD
-                GameManager.SpaceShip.Retard(CrossPlatformInputManager.GetButton("Retard"));
+                    // FIRE
+                    if (CrossPlatformInputManager.GetButtonDown("Fire"))
+                        ship.Fire();
 
-                // TURN LEFT
-                GameManager.SpaceShip.TurnLeft(CrossPlatformInputManager.GetButton("TurnLeft"));
+                    // TRUST
+                    ship.Trust(CrossPlatformInputManager.GetButton("Trust"));
 
-                // TURN RIGHT
-                GameManager.SpaceShip.TurnRight(CrossPlatformInputManager.GetButton("TurnRight"));
+                    // RETARD
+                    ship.Retard(CrossPlatformInputManager.GetButton("Retard"));
+
+                    // TURN LEFT
+                    ship.TurnLeft(CrossPlatformInputManager.GetButton("TurnLeft"));
+
+                    // TURN RIGHT
+                    ship.TurnRight(CrossPlatformInputManager.GetButton("TurnRight"));
+                }
 #endif
             }
 

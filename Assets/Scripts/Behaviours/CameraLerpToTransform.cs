@@ -24,24 +24,24 @@ public class CameraLerpToTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraTrackTarget != null)
+        if (this.cameraTrackTarget != null)
         {
-            var newPosition = Vector2.Lerp(transform.position, cameraTrackTarget.position,
-                Time.deltaTime * trackingSpeed);
-            var camPosition = new Vector3(newPosition.x, newPosition.y, cameraZDepth);
+            var newPosition = Vector2.Lerp(this.transform.position, this.cameraTrackTarget.position,
+                Time.deltaTime * this.trackingSpeed);
+            var camPosition = new Vector3(newPosition.x, newPosition.y, this.cameraZDepth);
 
             var v3 = camPosition;
 
             var newX = v3.x;
             var newY = v3.y;
 
-            if (!(minX == 0 && maxX == 0 && minY == 0 && maxY == 0))
+            if (!(this.minX == 0 && this.maxX == 0 && this.minY == 0 && this.maxY == 0))
             {
-                newX = Mathf.Clamp(v3.x, minX, maxX);
-                newY = Mathf.Clamp(v3.y, minY, maxY);
+                newX = Mathf.Clamp(v3.x, this.minX, this.maxX);
+                newY = Mathf.Clamp(v3.y, this.minY, this.maxY);
             }
 
-            transform.position = new Vector3(newX, newY, cameraZDepth);
+            this.transform.position = new Vector3(newX, newY, this.cameraZDepth);
         }
     }
 }

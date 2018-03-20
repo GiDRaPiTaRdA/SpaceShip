@@ -26,50 +26,50 @@ public class LandingPadBehavoiur : MonoBehaviour
     {
         this.gameObject.tag = GameTags.LandingPad;
 
-        collider = GetComponent<Collider2D>();
+        this.collider = this.GetComponent<Collider2D>();
 
-        Vector2 size = collider.bounds.size;
+        Vector2 size = this.collider.bounds.size;
 
         //Vector2 size = transform.lossyScale;
-        deltaHeight = size.y / 2;
+        this.deltaHeight = size.y / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Pressed)
+        if (this.Pressed)
         {
-            var moveResult = MoveDown();
+            var moveResult = this.MoveDown();
 
             if (!moveResult)
             {
                 // Pressed = collider.IsTouchingLayers();
 
-                if (!treeted)
+                if (!this.treeted)
                 {
-                    Treet();
-                    treeted = true;
+                    this.Treet();
+                    this.treeted = true;
                 }
                 else
                 {
-                    timeWaited += Time.deltaTime;
+                    this.timeWaited += Time.deltaTime;
 
-                    if (timeWaited > timeWait)
+                    if (this.timeWaited > this.timeWait)
                     {
-                        timeWaited = 0;
+                        this.timeWaited = 0;
 
                         var ship = GameObject.FindGameObjectsWithTag(GameTags.Lander);
 
                         bool temp = ship.Any(o =>
                           {
                               var composite = o.GetComponent<CompositeCollider2D>();
-                              bool touch = collider.IsTouching(composite);
+                              bool touch = this.collider.IsTouching(composite);
                               return touch;
                           }
                             );
 
-                        Pressed = temp;
+                        this.Pressed = temp;
 
                     }
                 }
@@ -77,40 +77,39 @@ public class LandingPadBehavoiur : MonoBehaviour
         }
         else
         {
-            var moveResult = MoveUp();
+            var moveResult = this.MoveUp();
 
             if (!moveResult)
             {
-                treeted = false;
+                this.treeted = false;
             }
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == GameTags.Lander)
-            Pressed = true;
+        if (collision.transform.tag == GameTags.Lander) this.Pressed = true;
     }
 
     private void Treet()
     {
-        if (GameManager.SpaceShip.CanAct)
-        {
-            GameManager.SpaceShip.HP += 50;
-            GameManager.SpaceShip.Fuel += 1000;
-        }
+        //if (GameManager.SpaceShip.CanAct)
+        //{
+        //    GameManager.SpaceShip.HP += 50;
+        //    GameManager.SpaceShip.Fuel += 1000;
+        //}
     }
 
     private bool MoveDown()
     {
         bool result = false;
 
-        float dH = (deltaHeight * Time.deltaTime) / timeDown;
+        float dH = (this.deltaHeight * Time.deltaTime) / this.timeDown;
 
-        if (deltaHeightMoved < deltaHeight)
+        if (this.deltaHeightMoved < this.deltaHeight)
         {
-            deltaHeightMoved += dH;
-            transform.position = new Vector3(transform.position.x, transform.position.y - dH, transform.position.z);
+            this.deltaHeightMoved += dH;
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - dH, this.transform.position.z);
 
             result = true;
         }
@@ -122,12 +121,12 @@ public class LandingPadBehavoiur : MonoBehaviour
     {
         bool result = false;
 
-        if (deltaHeightMoved > 0)
+        if (this.deltaHeightMoved > 0)
         {
-            float dH = (deltaHeight * Time.deltaTime) / timeUp;
+            float dH = (this.deltaHeight * Time.deltaTime) / this.timeUp;
 
-            deltaHeightMoved -= dH;
-            transform.position = new Vector3(transform.position.x, transform.position.y + dH, transform.position.z);
+            this.deltaHeightMoved -= dH;
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + dH, this.transform.position.z);
 
             result = true;
         }

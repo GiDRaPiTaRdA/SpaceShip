@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using Assets.Scripts.Entities;
 using ToolKit;
 using UnityEngine;
 
-public class MovementBehaviour : MonoBehaviour {
+public class MovementBehaviour : ShipMonoBehaviour {
 
     public float trust;
     public float retard;
@@ -13,23 +14,26 @@ public class MovementBehaviour : MonoBehaviour {
     private Rigidbody2D rigidbodyInstance;
 
     // Use this for initialization
-    void Start () {
-        rigidbodyInstance = GetComponent<Rigidbody2D>();
+    protected override void Start ()
+    {
+        base.Start();
 
-        GameManager.SpaceShip.TrustForce = trust;
-        GameManager.SpaceShip.RertardForce = retard;
-        GameManager.SpaceShip.TurnForce = turn;
+        this.rigidbodyInstance = this.GetComponent<Rigidbody2D>();
 
-        GameManager.SpaceShip.OnTrust += this.SpaceShip_OnTrust;
-        GameManager.SpaceShip.OnRetard += this.SpaceShip_OnRetard;
-        GameManager.SpaceShip.OnTurn += this.SpaceShip_OnTurn;
+        this.SpaceShip.TrustForce = this.trust;
+        this.SpaceShip.RertardForce = this.retard;
+        this.SpaceShip.TurnForce = this.turn;
+        
+        this.SpaceShip.OnTrust += this.SpaceShip_OnTrust;
+        this.SpaceShip.OnRetard += this.SpaceShip_OnRetard;
+        this.SpaceShip.OnTurn += this.SpaceShip_OnTurn;
     }
 
     private void SpaceShip_OnTrust(object sender, SpaceShipEventArgs e)
     {
         Vector2 deltaVelocity = new Vector2(0, e.TrustForce);
 
-        this.rigidbodyInstance.AddForce(deltaVelocity.DirrectionDependentBehavoir(transform));
+        this.rigidbodyInstance.AddForce(deltaVelocity.DirrectionDependentBehavoir(this.transform));
     }
 
     private void SpaceShip_OnRetard(object sender, SpaceShipEventArgs e)
@@ -45,7 +49,7 @@ public class MovementBehaviour : MonoBehaviour {
 
     private void SpaceShip_OnTurn(object sender, SpaceShipEventArgs e)
     {
-        rigidbodyInstance.AddTorque(e.TurnForce, ForceMode2D.Force);
+        this.rigidbodyInstance.AddTorque(e.TurnForce, ForceMode2D.Force);
     }
 
 }

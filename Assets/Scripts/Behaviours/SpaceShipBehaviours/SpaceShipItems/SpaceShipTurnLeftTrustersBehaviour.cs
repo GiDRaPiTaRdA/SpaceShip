@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
 namespace Assets.Scripts.Behaviours
 {
-    public class SpaceShipTurnLeftTrustersBehaviour : MonoBehaviour
+    public class SpaceShipTurnLeftTrustersBehaviour : ShipMonoBehaviour
     {
         Animator animator;
 
         // Use this for initialization
-        void Start()
+        protected override void Start ()
         {
-            animator = GetComponent<Animator>();
+            base.Start();
+
+            this.animator = this.GetComponent<Animator>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            animator.SetBool("TrustActivated", GameManager.SpaceShip.IsTurningLeft);
+            this.animator.SetBool("TrustActivated", this.SpaceShip.IsTurningLeft);
         }
     }
 }

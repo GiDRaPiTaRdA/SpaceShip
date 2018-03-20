@@ -9,14 +9,14 @@ public class ZeroGravityOnMoveBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rigidBodyInstance = GetComponent<Rigidbody2D>();
-        defaultGravityScale = rigidBodyInstance.gravityScale;
+	    this.rigidBodyInstance = this.GetComponent<Rigidbody2D>();
+	    this.defaultGravityScale = this.rigidBodyInstance.gravityScale;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        rigidBodyInstance.gravityScale = GravityFunc(defaultGravityScale,rigidBodyInstance.velocity.magnitude);
+	    this.rigidBodyInstance.gravityScale = GravityFunc(this.defaultGravityScale, this.rigidBodyInstance.velocity.magnitude);
     }
 
     private static float GravityFunc(float gravity, float speed)

@@ -7,25 +7,28 @@ using ToolKit;
 using Assets.Scripts.Entities;
 using Assets.Scripts.GameControls;
 using System.Linq;
+using UnityEngine.Video;
 
 public class SpaceShipBehaviour : MonoBehaviour
 {
-
     public float fuel;
     public float hp;
 
-    private SpaceShipModifications shipModifications;
-    public SpaceShipModifications ShipModifications { get { return shipModifications ?? (shipModifications = new SpaceShipModifications(this.gameObject)); } }
+    public SpaceShip SpaceShip { get; private set; }
 
-    void Start()
+    void Awake()
     {
-        this.gameObject.tag = GameTags.Lander;
-
-        GameManager.SpaceShip.Fuel = fuel;
-        GameManager.SpaceShip.HP = hp;
-
-        GameManager.Initialize();
+        this.SpaceShip = new SpaceShip
+        {
+            Fuel = this.fuel,
+            HP = this.hp
+        };
     }
+
+
+    private SpaceShipModifications shipModifications;
+    public SpaceShipModifications ShipModifications => this.shipModifications ?? (this.shipModifications = new SpaceShipModifications(this.gameObject));
+
 }
 
 

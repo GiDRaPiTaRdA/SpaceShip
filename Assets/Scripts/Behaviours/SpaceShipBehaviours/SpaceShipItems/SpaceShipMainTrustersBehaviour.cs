@@ -1,20 +1,24 @@
 ﻿using GameControls;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
-public class SpaceShipMainTrustersBehaviour : MonoBehaviour {
+public class SpaceShipMainTrustersBehaviour : ShipMonoBehaviour {
 
     Animator animator;
 
 	// Use this for initialization
-	void Start () {
-        animator = GetComponent<Animator>();
+    protected override void Start ()
+    {
+        base.Start();
+
+	    this.animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("TrustActivated", GameManager.SpaceShip.IsTrusting);
+        this.animator.SetBool("TrustActivated", this.SpaceShip.IsTrusting);
     }
 }

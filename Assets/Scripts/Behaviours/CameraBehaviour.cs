@@ -13,15 +13,15 @@ public class CameraBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        viewBox = new Vector2(12,6);
+        this.viewBox = new Vector2(12,6);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (followingObject != null)
+        if (this.followingObject != null)
         {
-            var objPosition = followingObject.transform.position;
+            var objPosition = this.followingObject.transform.position;
             var camPosition = this.transform.position;
 
             var deltaPos = new Vector2(camPosition.x - objPosition.x, camPosition.y - objPosition.y);
@@ -31,13 +31,13 @@ public class CameraBehaviour : MonoBehaviour
 
             Debug.Log(deltaPos.x + " " + deltaPos.y);
 
-            if ((viewBox.x / 2 - Math.Abs(deltaPos.x)) < 0){
-                shifPos.x = (viewBox.x / 2 - Math.Abs(deltaPos.x)) * (deltaPos.x > 0 ? 1 : -1);
+            if ((this.viewBox.x / 2 - Math.Abs(deltaPos.x)) < 0){
+                shifPos.x = (this.viewBox.x / 2 - Math.Abs(deltaPos.x)) * (deltaPos.x > 0 ? 1 : -1);
             }
 
-            if ((viewBox.y / 2 - Math.Abs(deltaPos.y)) < 0)
+            if ((this.viewBox.y / 2 - Math.Abs(deltaPos.y)) < 0)
             {
-				shifPos.y = (viewBox.y / 2 - Math.Abs(deltaPos.y))*(deltaPos.y>0?1:-1);
+				shifPos.y = (this.viewBox.y / 2 - Math.Abs(deltaPos.y))*(deltaPos.y>0?1:-1);
             }
 
 

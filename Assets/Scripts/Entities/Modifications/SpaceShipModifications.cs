@@ -19,7 +19,7 @@ namespace Assets.Scripts.Entities
             this.gameObject = gameObject;
 
             // Initialize modifications
-            modifications.Add(typeof(AntiGravitySpeedModification), new AntiGravitySpeedModification(this.gameObject));
+            this.modifications.Add(typeof(AntiGravitySpeedModification), new AntiGravitySpeedModification(this.gameObject));
         }
 
         public void ToggleModifiCation<ModificationType>(bool value) where ModificationType : Modification

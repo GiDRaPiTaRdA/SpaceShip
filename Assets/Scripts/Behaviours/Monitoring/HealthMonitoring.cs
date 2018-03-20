@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthMonitoring : MonoBehaviour {
+public class HealthMonitoring : ShipMonoBehaviour {
 
 
     private string preFuelText;
@@ -11,14 +12,16 @@ public class HealthMonitoring : MonoBehaviour {
     public Text healthValueText;
 
     // Use this for initialization
-    void Start()
+    protected override void Start ()
     {
-        preFuelText = healthValueText.text;
+        base.Start();
+
+        this.preFuelText = this.healthValueText.text;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthValueText.text = preFuelText + " " + GameManager.SpaceShip.HP.ToString("000");
+        this.healthValueText.text = this.preFuelText + " " + this.SpaceShip.HP.ToString("000");
     }
 }

@@ -12,15 +12,15 @@ public class ExplosionBehaviour : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Exp();
+        this.Exp();
 	}
 	
 
     void Exp()
     {
-        Vector2 explosionPos = transform.position;
+        Vector2 explosionPos = this.transform.position;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius)
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, this.radius)
             .Where(c => c.gameObject.tag != GameTags.LazerBeam).ToArray();
 
         foreach (Collider2D hit in colliders)
@@ -36,7 +36,7 @@ public class ExplosionBehaviour : MonoBehaviour {
                 vector.Normalize();
 
 
-                Vector2 force = vector * (float)(power * transform.localScale.x / (distance < minDistance ? minDistance : distance));
+                Vector2 force = vector * (float)(this.power * this.transform.localScale.x / (distance < this.minDistance ? this.minDistance : distance));
 
                 hitBody.AddForce(force);
             }

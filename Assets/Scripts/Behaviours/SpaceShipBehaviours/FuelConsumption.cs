@@ -1,39 +1,41 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
-public class FuelConsumption : MonoBehaviour
+public class FuelConsumption : ShipMonoBehaviour
 {
 
     public float consumption =1;
 
     // Use this for initialization
-    void Start()
+    protected override void Start ()
     {
-        GameManager.SpaceShip.Consumption = consumption;
+        base.Start();
+        this.SpaceShip.Consumption = this.consumption;
 
-        GameManager.SpaceShip.OnTrust += this.SpaceShip_OnTrust;
-        GameManager.SpaceShip.OnTurn += this.SpaceShip_OnTurn;
-        GameManager.SpaceShip.OnStabelize += this.SpaceShip_OnStabelize;
-        GameManager.SpaceShip.OnRetard += this.SpaceShip_OnRetard;
+        this.SpaceShip.OnTrust += this.SpaceShip_OnTrust;
+        this.SpaceShip.OnTurn += this.SpaceShip_OnTurn;
+        this.SpaceShip.OnStabelize += this.SpaceShip_OnStabelize;
+        this.SpaceShip.OnRetard += this.SpaceShip_OnRetard;
     }
 
     private void SpaceShip_OnTrust(object sender, Assets.Scripts.Entities.SpaceShipEventArgs e)
     {
-        GameManager.SpaceShip.FuelConsumption(GameManager.SpaceShip.Consumption);
+        this.SpaceShip.FuelConsumption(this.SpaceShip.Consumption);
     }
     private void SpaceShip_OnTurn(object sender, Assets.Scripts.Entities.SpaceShipEventArgs e)
     {
-        GameManager.SpaceShip.FuelConsumption(GameManager.SpaceShip.TurnConsumption);
+        this.SpaceShip.FuelConsumption(this.SpaceShip.TurnConsumption);
     }
     private void SpaceShip_OnRetard(object sender, Assets.Scripts.Entities.SpaceShipEventArgs e)
     {
-        GameManager.SpaceShip.FuelConsumption(GameManager.SpaceShip.Consumption);
+        this.SpaceShip.FuelConsumption(this.SpaceShip.Consumption);
     }
     private void SpaceShip_OnStabelize(object sender, Assets.Scripts.Entities.SpaceShipEventArgs e)
     {
-        GameManager.SpaceShip.FuelConsumption(GameManager.SpaceShip.StabelizeConsumption*Math.Abs(e.StabelizingForce));
+        this.SpaceShip.FuelConsumption(this.SpaceShip.StabelizeConsumption*Math.Abs(e.StabelizingForce));
     }
 
 }

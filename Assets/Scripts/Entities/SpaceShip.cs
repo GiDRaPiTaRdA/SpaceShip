@@ -19,10 +19,10 @@ namespace Assets.Scripts.Entities
         #endregion
 
         #region Properties
-        public float TurnConsumption { get { return Consumption * 0.3f; } }
-        public float StabelizeConsumption { get { return Consumption * 0.1f; } }
-
-        public bool AnyFuel { get { return Fuel > 0; } }
+        public float TurnConsumption => this.Consumption * 0.3f;
+        public float StabelizeConsumption => this.Consumption * 0.1f;
+        public bool AnyFuel => this.Fuel > 0;
+        public bool CanAct => this.AnyFuel && !this.IsLocked && !this.IsDestroyed;
 
         public bool IsLocked { get; set; }
         public bool IsDestroyed { get; set; }
@@ -31,8 +31,6 @@ namespace Assets.Scripts.Entities
         public bool IsRetarding { get; private set; }
         public bool IsTurningLeft { get; private set; }
         public bool IsTurningRight { get; private set; }
-
-        public bool CanAct { get { return this.AnyFuel && !this.IsLocked && !this.IsDestroyed; } }
         #endregion
 
         #region Events
@@ -48,11 +46,12 @@ namespace Assets.Scripts.Entities
         public event EventHandler<SpaceShipEventArgs> OnDestruct;
         #endregion
 
+
         public void Fire()
         {
             if (this.CanAct)
             {
-                this.OnFire.SafeInvoke(this, new SpaceShipEventArgs());
+                this.OnFire?.Invoke(this, new SpaceShipEventArgs());
             }
         }
 
@@ -62,9 +61,7 @@ namespace Assets.Scripts.Entities
             {
                 this.IsTrusting = true;
 
-                this.OnTrust.SafeInvoke(this, new SpaceShipEventArgs() { TrustForce = this.TrustForce });
-
-                //FuelConsumption(this.TurnConsumption);
+                this.OnTrust?.Invoke(this, new SpaceShipEventArgs() { TrustForce = this.TrustForce });
             }
             else
             {
@@ -78,7 +75,7 @@ namespace Assets.Scripts.Entities
             {
                 this.IsRetarding = true;
 
-                this.OnRetard.SafeInvoke(this, new SpaceShipEventArgs() { RetardForce = this.RertardForce });
+                this.OnRetard?.Invoke(this, new SpaceShipEventArgs() { RetardForce = this.RertardForce });
 
                 //FuelConsumption(this.TurnConsumption);
             }
@@ -90,11 +87,11 @@ namespace Assets.Scripts.Entities
 
         public void TurnLeft(bool @do)
         {
-            if (CanAct && @do)
+            if (this.CanAct && @do)
             {
                 this.IsTurningLeft = true;
 
-                this.OnTurn.SafeInvoke(this, new SpaceShipEventArgs() { TurnForce = this.TurnForce });
+                this.OnTurn?.Invoke(this, new SpaceShipEventArgs() { TurnForce = this.TurnForce });
             }
             else
             {
@@ -104,11 +101,11 @@ namespace Assets.Scripts.Entities
 
         public void TurnRight(bool @do)
         {
-            if (CanAct && @do)
+            if (this.CanAct && @do)
             {
                 this.IsTurningRight = true;
 
-                this.OnTurn.SafeInvoke(this, new SpaceShipEventArgs() { TurnForce = -this.TurnForce });
+                this.OnTurn?.Invoke(this, new SpaceShipEventArgs() { TurnForce = -this.TurnForce });
             }
             else
             {
@@ -118,32 +115,32 @@ namespace Assets.Scripts.Entities
 
         public void Stabelize(float force)
         {
-            if (CanAct)
+            if (this.CanAct)
             {
-                this.OnStabelize.SafeInvoke(this, new SpaceShipEventArgs() { StabelizingForce = force });
+                this.OnStabelize?.Invoke(this, new SpaceShipEventArgs() { StabelizingForce = force });
             }
         }
 
         public void Destroy()
         {
-            this.OnDestruct.SafeInvoke(this, null);
+            this.OnDestruct?.Invoke(this, null);
         }
 
         public void OnCollisiion(float force)
         {
-            Damage(force);
+            this.Damage(force);
         }
 
         public void Damage(float force)
         {
-            if (HP - force < 1)
+            if (this.HP - force < 1)
             {
-                HP = 0;
-                Destroy();
+                this.HP = 0;
+                this.Destroy();
             }
             else
             {
-                HP -= force;
+                this.HP -= force;
             }
         }
 
@@ -158,7 +155,7 @@ namespace Assets.Scripts.Entities
                 else
                 {
                     this.Fuel = 0;
-                    OnFuelExeeds.SafeInvoke(this, null);
+                    this.OnFuelExeeds?.Invoke(this, null);
                 }
             }
         }

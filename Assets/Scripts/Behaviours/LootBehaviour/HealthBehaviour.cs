@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
 namespace Assets.Scripts.Behaviours
 {
-    public class HealthBehaviour : MonoBehaviour
+    public class HealthBehaviour : ShipMonoBehaviour
     {
         public int health = 25;
 
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Behaviours
         void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.tag == GameTags.Lander)
-                GameManager.SpaceShip.HP += health;
+                this.SpaceShip.HP += this.health;
         }
     }
 }

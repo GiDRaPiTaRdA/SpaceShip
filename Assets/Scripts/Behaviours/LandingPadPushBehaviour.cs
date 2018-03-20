@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
-public class LandingPadPushBehaviour : MonoBehaviour
+public class LandingPadPushBehaviour : ShipMonoBehaviour
 {
 
 
@@ -21,30 +21,32 @@ public class LandingPadPushBehaviour : MonoBehaviour
     private bool IsPressingDown { get; set; }
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        collider = GetComponent<Collider2D>();
+        base.Start();
 
-        Vector2 size = collider.bounds.size;
-        deltaHeight = size.y / 2;
+        this.collider = this.GetComponent<Collider2D>();
+
+        Vector2 size = this.collider.bounds.size;
+        this.deltaHeight = size.y / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsPressingDown && IsActive)
+        if (this.IsPressingDown && this.IsActive)
         {
-            float dH = (deltaHeight * Time.deltaTime) / timeDown;
+            float dH = (this.deltaHeight * Time.deltaTime) / this.timeDown;
 
-            if (deltaHeightMoved < deltaHeight)
+            if (this.deltaHeightMoved < this.deltaHeight)
             {
-                deltaHeightMoved += dH;
-                transform.position = new Vector3(transform.position.x, transform.position.y - dH, transform.position.z);
+                this.deltaHeightMoved += dH;
+                this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - dH, this.transform.position.z);
             }
             else
             {
-                IsActive = false;
-                GameManager.SpaceShip.Fuel = 0;
+                this.IsActive = false;
+                this.SpaceShip.Fuel = 0;
             }
         }
     }
@@ -52,6 +54,6 @@ public class LandingPadPushBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        IsPressingDown = true;
+        this.IsPressingDown = true;
     }
 }

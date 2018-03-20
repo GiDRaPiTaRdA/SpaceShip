@@ -13,9 +13,9 @@ public class MissleBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Vector2 deltaVelocity = new Vector2(0, speed);
+        Vector2 deltaVelocity = new Vector2(0, this.speed);
 
-        GetComponent<Rigidbody2D>().AddForce(deltaVelocity.DirrectionDependentBehavoir(this.transform)*this.gameObject.GetComponent<Rigidbody2D>().mass*10);
+	    this.GetComponent<Rigidbody2D>().AddForce(deltaVelocity.DirrectionDependentBehavoir(this.transform)*this.gameObject.GetComponent<Rigidbody2D>().mass*10);
     }
 	
 	// Update is called once per frame
@@ -25,18 +25,14 @@ public class MissleBehaviour : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (hitPrefab != null)
+        if (this.hitPrefab != null)
         {
-            var explosion = Instantiate(hitPrefab, transform.position, Quaternion.identity);
+            var explosion = Instantiate(this.hitPrefab, this.transform.position, Quaternion.identity);
 
             explosion.MoveToParrent(this.gameObject);
         }
 
-        var damageble = collision.gameObject.GetComponent<DamagebleBehaviour>();
-        if (damageble != null)
-        {
-            damageble.hp -= damage;
-        }
+        collision.gameObject.GetComponent<DamagebleBehaviour>()?.Damage(this.damage);
 
         Destroy(this.gameObject);
     }

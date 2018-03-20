@@ -1,38 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using UnityEngine;
 
-public class RetardOnFireBehaviour : MonoBehaviour {
+public class RetardOnFireBehaviour : ShipMonoBehaviour {
 
     public int DelayInMilliseconds = 500;
     Timer timer;
     bool retarding;
 
 	// Use this for initialization
-	void Start () {
-        timer = new Timer();
-        timer.Elapsed += this.Timer_Elapsed;
-        timer.AutoReset = false;
-        timer.Interval = DelayInMilliseconds;
+    protected override void Start ()
+    {
+        base.Start();
 
-        GameManager.SpaceShip.OnFire += this.SpaceShip_OnFire;
+	    this.timer = new Timer();
+	    this.timer.Elapsed += this.Timer_Elapsed;
+	    this.timer.AutoReset = false;
+	    this.timer.Interval = this.DelayInMilliseconds;
+
+        this.SpaceShip.OnFire += this.SpaceShip_OnFire;
 	}
 
     private void Timer_Elapsed(object sender, ElapsedEventArgs e)
     {
-        retarding = false;
+        this.retarding = false;
     }
 
     private void SpaceShip_OnFire(object sender, Assets.Scripts.Entities.SpaceShipEventArgs e)
     {
-        timer.Stop();
-        timer.Start();
-        retarding = true;
+        this.timer.Stop();
+        this.timer.Start();
+        this.retarding = true;
     }
 
     // Update is called once per frame
     void Update () {
-            GameManager.SpaceShip.Retard(retarding);
+            this.SpaceShip.Retard(this.retarding);
 	}
 }

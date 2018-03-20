@@ -11,8 +11,8 @@ public class KeyBindingsBehaviour : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ApplicationKeyBindings.TrustUp = trustUp;
-        ApplicationKeyBindings.TurnLeft = turnLeft;
-        ApplicationKeyBindings.TurnRight = turnRight;
+        ApplicationKeyBindings.TrustUp = this.trustUp;
+        ApplicationKeyBindings.TurnLeft = this.turnLeft;
+        ApplicationKeyBindings.TurnRight = this.turnRight;
     }
 }

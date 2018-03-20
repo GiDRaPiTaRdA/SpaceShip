@@ -27,49 +27,49 @@ public class LandingGearBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        lander = GameObject.FindGameObjectsWithTag(GameTags.Lander).First();
-        landingPads = GameObject.FindGameObjectsWithTag(GameTags.LandingPad);
+        this.lander = GameObject.FindGameObjectsWithTag(GameTags.Lander).First();
+        this.landingPads = GameObject.FindGameObjectsWithTag(GameTags.LandingPad);
 
-        SpriteRenderer render = GetComponent<SpriteRenderer>();
-        deltaHeight = render.bounds.size.y;
+        SpriteRenderer render = this.GetComponent<SpriteRenderer>();
+        this.deltaHeight = render.bounds.size.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Pressed = landingPads.Any(lp => IsNear(lp.transform));
+        this.Pressed = this.landingPads.Any(lp => this.IsNear(lp.transform));
 
-        if (Pressed)
+        if (this.Pressed)
         {
-            var moveResult = MoveDown();
+            var moveResult = this.MoveDown();
 
             if (!moveResult)
             {
-                if (!treeted)
+                if (!this.treeted)
                 {
-                    Treet();
-                    treeted = true;
+                    this.Treet();
+                    this.treeted = true;
                 }
                 else
                 {
-                    timeWaited += Time.deltaTime;
+                    this.timeWaited += Time.deltaTime;
 
-                    if (timeWaited > timeWait)
+                    if (this.timeWaited > this.timeWait)
                     {
-                        timeWaited = 0;
+                        this.timeWaited = 0;
 
-                        Pressed = landingPads.Any(lp => IsNear(lp.transform));
+                        this.Pressed = this.landingPads.Any(lp => this.IsNear(lp.transform));
                     }
                 }
             }
         }
         else
         {
-            var moveResult = MoveUp();
+            var moveResult = this.MoveUp();
 
             if (!moveResult)
             {
-                treeted = false;
+                this.treeted = false;
             }
         }
     }
@@ -96,17 +96,17 @@ public class LandingGearBehaviour : MonoBehaviour
     {
         bool result = false;
 
-        float dH = (deltaHeight * Time.deltaTime) / timeDown;
+        float dH = (this.deltaHeight * Time.deltaTime) / this.timeDown;
 
-        if (deltaHeightMoved < deltaHeight)
+        if (this.deltaHeightMoved < this.deltaHeight)
         {
-            deltaHeightMoved += dH;
+            this.deltaHeightMoved += dH;
 
             //bool temp = new Vector2(transform.position.x, transform.position.y - dH).DirrectionDependentBehavoir();
 
-            Vector2 temp = new Vector2(0, -dH).DirrectionDependentBehavoir(transform.eulerAngles.z / Mathf.Rad2Deg);
+            Vector2 temp = new Vector2(0, -dH).DirrectionDependentBehavoir(this.transform.eulerAngles.z / Mathf.Rad2Deg);
 
-            transform.position = new Vector3(transform.position.x+ temp.x, transform.position.y + temp.y, transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x+ temp.x, this.transform.position.y + temp.y, this.transform.position.z);
 
             result = true;
         }
@@ -118,16 +118,16 @@ public class LandingGearBehaviour : MonoBehaviour
     {
         bool result = false;
 
-        if (deltaHeightMoved > 0)
+        if (this.deltaHeightMoved > 0)
         {
-            Collider2D collider = GetComponent<Collider2D>();
+            Collider2D collider = this.GetComponent<Collider2D>();
 
 
-            float dH = (deltaHeight * Time.deltaTime) / timeUp;
+            float dH = (this.deltaHeight * Time.deltaTime) / this.timeUp;
 
-            deltaHeightMoved -= dH;
+            this.deltaHeightMoved -= dH;
 
-            Vector2 temp = new Vector2(0, dH).DirrectionDependentBehavoir(transform.eulerAngles.z/Mathf.Rad2Deg);
+            Vector2 temp = new Vector2(0, dH).DirrectionDependentBehavoir(this.transform.eulerAngles.z/Mathf.Rad2Deg);
 
             collider.transform.position = new Vector3(collider.transform.position.x + temp.x, collider.transform.position.y + temp.y, collider.transform.position.z);
 

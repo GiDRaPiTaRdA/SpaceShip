@@ -2,29 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Behaviours.SpaceShipBehaviours;
 using Assets.Scripts.Entities;
 using Assets.ToolKit;
 using UnityEngine;
 
-public class SpaceShipDestructionBehaviour : MonoBehaviour {
+public class SpaceShipDestructionBehaviour : ShipMonoBehaviour {
 
     public GameObject explosionPrefab;
     public GameObject destructedSpaceship;
 
     // Use this for initialization
-    void Start () {
-        GameManager.SpaceShip.DestructTreshold = 1.5f;
+    protected override void Start ()
+    {
+        base.Start();
 
-        GameManager.SpaceShip.OnDestruct += this.SpaceShip_OnDestruct;
+        this.SpaceShip.DestructTreshold = 1.5f;
+
+        this.SpaceShip.OnDestruct += this.SpaceShip_OnDestruct;
     }
 
     private void SpaceShip_OnDestruct(object sender, SpaceShipEventArgs e)
     {
-        if (!GameManager.SpaceShip.IsDestroyed)
+        if (!this.SpaceShip.IsDestroyed)
         {
-            GameManager.SpaceShip.IsDestroyed = true;
+            this.SpaceShip.IsDestroyed = true;
 
-            HandleLanderDestroy();
+            this.HandleLanderDestroy();
         }
     }
 
@@ -32,7 +36,7 @@ public class SpaceShipDestructionBehaviour : MonoBehaviour {
     {
         if (collision.gameObject.tag != GameTags.Loot)
         {
-            GameManager.SpaceShip.OnCollisiion(DamageCalc.PowerFunc(DamageCalc.GetDamageForce(collision)));
+            this.SpaceShip.OnCollisiion(DamageCalc.PowerFunc(DamageCalc.GetDamageForce(collision)));
         }
     }
 
@@ -40,10 +44,10 @@ public class SpaceShipDestructionBehaviour : MonoBehaviour {
     {
         Destroy(this.gameObject);
 
-        if (explosionPrefab != null)
+        if (this.explosionPrefab != null)
         {
-            var spaceshipDestructed = Instantiate(destructedSpaceship, transform.position, transform.rotation);
-            var explosion = Instantiate(explosionPrefab, transform.position, transform.rotation);
+            var spaceshipDestructed = Instantiate(this.destructedSpaceship, this.transform.position, this.transform.rotation);
+            var explosion = Instantiate(this.explosionPrefab, this.transform.position, this.transform.rotation);
 
             explosion.MoveToParrent(this.gameObject);
             spaceshipDestructed.TranferPhisicsToChildDebris(this.gameObject.GetComponent<Rigidbody2D>());

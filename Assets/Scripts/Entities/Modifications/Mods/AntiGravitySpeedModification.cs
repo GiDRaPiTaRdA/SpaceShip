@@ -12,8 +12,8 @@ namespace Assets.Scripts.Entities.Modifications.Mods
 
         public override void ToggleMode(bool value)
         {
-            if (gameObject != null)
-                ((ZeroGravityOnMoveBehaviour)gameObject.GetComponent(typeof(ZeroGravityOnMoveBehaviour))).enabled = value;
+            if (this.gameObject != null)
+                ((ZeroGravityOnMoveBehaviour) this.gameObject.GetComponent(typeof(ZeroGravityOnMoveBehaviour))).enabled = value;
         }
     }
 }
