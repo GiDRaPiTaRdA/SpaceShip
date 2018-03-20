@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.GameControls;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Behaviours.SpaceShipBehaviours;

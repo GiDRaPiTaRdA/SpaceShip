@@ -8,18 +8,6 @@ using ToolKit;
 using Assets.Scripts.Entities.Modifications.Mods;
 
 public class GameManager : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-      
-    }
-
-    //public static event EventHandler OnInitialize;
-
-    //public static void Initialize()
-    //{
-    //    OnInitialize.SafeInvoke(null, EventArgs.Empty);
-    //}
 
     public void ResetLevel(){
         Time.timeScale = 1;
@@ -35,6 +23,6 @@ public class GameManager : MonoBehaviour {
     {
         var lander = GameObject.FindGameObjectWithTag(GameTags.Lander);
         if (lander!=null)
-            lander.GetComponent<SpaceShipBehaviour>().ShipModifications.ToggleModifiCation<AntiGravitySpeedModification>(value);
+            lander.GetComponent<SpaceShipModsBehaviour>().ShipModifications.ToggleModifiCation<AntiGravitySpeedModification>(value);
     }
 }

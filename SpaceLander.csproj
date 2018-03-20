@@ -316,6 +316,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ControllerBehaviour.cs" />
     <Compile Include="Assets\DebrisBehaviour.cs" />
     <Compile Include="Assets\DestructubleObjectBehaviour.cs" />
     <Compile Include="Assets\HitFireBehaviour.cs" />
@@ -340,13 +341,13 @@
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\RetardOnFireBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\ShipMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipModsBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipDestructionBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\GunBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\LandingGearBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\SpaceShipMainTrustersBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\SpaceShipTurnLeftTrustersBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipItems\SpaceShipTurnRightTrustersBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\SpaceShipModsBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\TorgueStabelizationBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviours\SpaceShipBehaviours\ZeroGravityOnMoveBehaviour.cs" />
     <Compile Include="Assets\Scripts\Entities\Modifications\Modification.cs" />
@@ -354,7 +355,6 @@
     <Compile Include="Assets\Scripts\Entities\Modifications\SpaceShipModifications.cs" />
     <Compile Include="Assets\Scripts\Entities\SpaceShip.cs" />
     <Compile Include="Assets\Scripts\Entities\SpaceShipEventArgs.cs" />
-    <Compile Include="Assets\Scripts\GameControls\GameInputs.cs" />
     <Compile Include="Assets\Scripts\GameControls\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameControls\GameTags.cs" />
     <Compile Include="Assets\Scripts\GameControls\KeyBindings\ApplicationKeyBindings.cs" />
