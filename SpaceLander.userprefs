@@ -1,0 +1,30 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Behaviours\LootBehaviour.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Behaviours\LandingPadBehavoiur.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\FuelBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\SpaceShipBehaviour.cs" Line="112" Column="2" />
+      <File FileName="Assets\Scripts\Entities\SpaceShip.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\SpaceShipMainTrustersBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameControls\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\BombBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\Monitoring\HealthMonitoring.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\Monitoring\FuelMonitoring.cs" Line="1" Column="1" />
+      <File FileName="Assets\ToolKit\VectorsManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\LandingGearBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\ToolKit\TreeTraversal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\SpaceShipTurnRightTrustersBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\CameraBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\CameraLerpToTransform.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviours\LootBehaviour.cs" Line="40" Column="64" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Maxim\Documents\SpaceLander\Assets\ToolKit\TreeTraversal.cs" line="16" column="1" />
+      <Breakpoint file="C:\Users\Maxim\Documents\SpaceLander\Assets\Scripts\Behaviours\CameraBehaviour.cs" line="39" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
