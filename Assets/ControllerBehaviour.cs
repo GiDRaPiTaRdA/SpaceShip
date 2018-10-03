@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Entities;
+using GameControls;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -27,19 +28,19 @@ public class ControllerBehaviour : MonoBehaviour
 #if UNITY_STANDALONE //PC
 
                 // FIRE
-                if(Input.GetKeyDown(KeyCode.F))GameManager.SpaceShip.Fire();
+                if(Input.GetKeyDown(KeyCode.F))this.ship.Fire();
 
                 // TRUST
-                GameManager.SpaceShip.Trust(Input.GetKey(KeyBinding.TrustUp.GetKeyCode()));
+                this.ship.Trust(Input.GetKey(KeyBinding.TrustUp.GetKeyCode()));
 
                 // RETARD
-                GameManager.SpaceShip.Retard(Input.GetKey(KeyCode.S));
+                this.ship.Retard(Input.GetKey(KeyCode.S));
 
                 // TURN LEFT
-                GameManager.SpaceShip.TurnLeft(Input.GetKey(KeyBinding.TurnLeft.GetKeyCode()));
+                this.ship.TurnLeft(Input.GetKey(KeyBinding.TurnLeft.GetKeyCode()));
 
                 // TURN RIGHT
-                GameManager.SpaceShip.TurnRight(Input.GetKey(KeyBinding.TurnRight.GetKeyCode()));
+                this.ship.TurnRight(Input.GetKey(KeyBinding.TurnRight.GetKeyCode()));
                
                     
 #elif UNITY_ANDROID // PHONE
